@@ -23,5 +23,5 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t ${{ secrets.REPOSITORY }}/kuardv2:${{ github.sha }} dev:ey -f ./Dockerfile
+            docker build . -t ${{ secrets.REPOSITORY }}/kuardv2:${{ github.sha }} -t dev:ey -f ./Dockerfile
             docker push ${{ secrets.REPOSITORY }}/kuardv2:${{ github.sha }}
