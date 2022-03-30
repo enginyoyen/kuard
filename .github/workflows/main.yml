@@ -37,7 +37,7 @@ jobs:
         password: ${ secrets.AZ_SP_CLIENT_SECRET }
         
     - name: Build the Docker image
-      run: docker build . -t ${ env.REGISTRY_NAME }.azurecr.io/${ env.APP_NAME }:${ github.sha } -f Dockerfile.build
+      run: docker build . -t ${ env.REGISTRY_NAME }.azurecr.io/${ env.APP_NAME }:${ github.sha } -f ./Dockerfile.build
 
     - name: Push Image to Docker
       run: docker push ${ env.REGISTRY_NAME }.azurecr.io/${ env.APP_NAME }:${ github.sha }
