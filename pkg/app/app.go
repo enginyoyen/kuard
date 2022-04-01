@@ -169,8 +169,13 @@ func NewApp() *App {
 	k.kg = keygen.New()
 	k.mq = memqserver.NewServer()
 
+	httpContextPath, ok := os.LookupEnv("HTTP_CONTEXT_PATH")
+        if !ok {
+            httpContextPath = ""
+        }
+	
 	// Add handlers
-	for _, prefix := range []string{"", "/a", "/b", "/c"} {
+	for _, prefix := range []string{httpContextPath, "/a", "/b", "/c"} {
 		rootHandler := k.getRootHandler(prefix)
 		router.GET(prefix+"/", rootHandler)
 		router.GET(prefix+"/-/*path", rootHandler)
