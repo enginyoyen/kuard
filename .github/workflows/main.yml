@@ -4,7 +4,7 @@ on: [push]
 name: Linux_Container_Workflow
 
 env:
-  IMAGE_NAME: YourAlias
+  IMAGE_NAME: youralias
   
 jobs:
     build-and-deploy:
@@ -26,5 +26,5 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t ${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME}}  -f ./Dockerfile
-            docker push ${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME}}
+            docker build . -t ${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME}}:latest  -f ./Dockerfile
+            docker push ${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME}}:latest
