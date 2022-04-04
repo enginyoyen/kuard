@@ -3,6 +3,9 @@
 on: [push]
 name: Linux_Container_Workflow
 
+env:
+  IMAGE_NAME: YourAlias
+  
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -23,5 +26,5 @@ jobs:
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
         - run: |
-            docker build . -t ${{ secrets.REPOSITORY }}/kuardv2:${{ github.sha }} -t ${{ secrets.REPOSITORY }}/kuardv2:ey -f ./Dockerfile
-            docker push ${{ secrets.REPOSITORY }}/kuardv2:${{ github.sha }}
+            docker build . -t ${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME}}  -f ./Dockerfile
+            docker push ${{ secrets.REPOSITORY }}/${{ env.IMAGE_NAME}}
